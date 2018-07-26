@@ -50,53 +50,57 @@ var test = {
     }
 };
 
-var welcome ={
-	"$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
-	"type": "AdaptiveCard",
-	"version": "1.0",
-	"body": [
-		{
-			"type": "Container",
-			"items": [
-				{
-					"type": "TextBlock",
-					"text": "Question and Answer Bot",
-					"weight": "bolder",
-					"size": "medium"
-				}
-			]
-		},
-		{
-			"type": "Container",
-			"items": [
-				{
-					"type": "TextBlock",
-					"text": "Hello! I am the Question and Answer Bot for the Department of Technology, SF. I am still a work in progress, but I can provide general answers about DT.",
-					"wrap": true
-                },
-                {
-                    "type": "TextBlock",
-                    "text": "Please type \"Hello\" to get started.",
-                    "wrap": true
-                },
-                {
-                    "type": "TextBlock",
-                    "text": "If you would like to go to the Department of Technology Site click on the button below:",
-                    "wrap": true
-                }
-			]
-		}
-	],
-    "actions": [
-    {
-      "type": "Action.OpenUrl",
-      "title": "DTSF Website",
-      "url": "http://tech.sfgov.org/"
-    }
-  ]
-};
+var welcome = {
+	"contentType": "application/vnd.microsoft.card.adaptive",
+	"content" : 
+	{
+	   "$schema":"http://adaptivecards.io/schemas/adaptive-card.json",
+	   "type":"AdaptiveCard",
+	   "version":"1.0",
+	   "body":
+		[
+	      {
+	         "type":"Container",
+	         "items":
+			  [
+	            {
+	               "type":"TextBlock",
+	               "text":"Question and Answer Bot",
+	               "weight":"bolder",
+	               "size":"medium"
+	            }
+	         ]
+	      },
+	      {
+	         "type":"Container",
+	         "items":
+			  [
+	            {
+	               "type":"TextBlock",
+	               "text":"Hello! I am the Question and Answer Bot for the Department of Technology, SF. I am still a work in progress, but I can provide general answers about DT.",
+	               "wrap":true
+	            },
+	            {
+	               "type":"TextBlock",
+	               "text":"Please type \"Hello\" to get started.",
+	               "wrap":true
+	            },
+	            {
+	               "type":"TextBlock",
+	               "text":"If you would like to go to the Department of Technology Site click on the button below:",
+	               "wrap":true
+	            }
+	         ]
+	      }
+	   ],
+	   "actions":
+		[
+	      {
+	         "type":"Action.OpenUrl",
+	         "title":"DTSF Website",
+	         "url":"http://tech.sfgov.org/"
+	      }
+	   ]}};
 
-testParsed = JSON.stringify(test);
-welcomeParsed = JSON.stringify(welcome);
-exports.test = testParsed;
-exports.welcome = welcomeParsed;
+exports.test = test;
+exports.welcome = welcome;
