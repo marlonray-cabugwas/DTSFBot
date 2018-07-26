@@ -39,10 +39,23 @@ var bot = new builder.UniversalBot(connector,
     [
         function(session)
         {
-            session.send('Hello User!');
-        }
+            if (session.message == "Hello"|| "hello")
+			{
+				builder.Prompts.text(session, "What is your name?");
+			}
+			else
+			{
+				session.send("Please enter \"Hello\"...");
+				session.replaceDialog("/");
+			}
+        },
+		function(session,results)
+		{
+			session.endDialog(`Hello ${results.response}! Please go ahead and ask a question`);
+		}
     ]);
 
+// A hello message at the beginning that tells the user how to start interacting with the bot
 bot.on('conversationUpdate', function(message) 
     {
         // Send a hello message when bot is added
