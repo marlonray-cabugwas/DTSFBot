@@ -2,7 +2,7 @@ var restify = require('restify');
 var builder = require('botbuilder');
 var botbuilder_azure = require("botbuilder-azure");
 var builder_cognitiveservices = require("botbuilder-cognitiveservices");
-var card = require("cards");
+var card = require("./cards");
 
 // Setup Restify Server
 var server = restify.createServer();
