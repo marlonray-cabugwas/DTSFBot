@@ -49,3 +49,4 @@ var test = {
         'actions': [ /* */ ]
     }
 };
+exports.test = test;
