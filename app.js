@@ -4,8 +4,6 @@ var botbuilder_azure = require("botbuilder-azure");
 var builder_cognitiveservices = require("botbuilder-cognitiveservices");
 var card = require("./cards");
 
-console.log(card.test);
-
 // Setup Restify Server
 var server = restify.createServer();
 server.listen(process.env.port || process.env.PORT || 3978, function () {
@@ -50,7 +48,7 @@ bot.on('conversationUpdate', function(message)
             {
                 if (identity.id === message.address.bot.id) 
                 {
-                    var msg = new builder.Message().address(message.address).addAttachment(card.test);
+                    var msg = new builder.Message().address(message.address).addAttachment(card.welcome);
                     bot.send(msg);
                 }
             });
