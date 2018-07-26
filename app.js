@@ -44,18 +44,7 @@ var basicQnAMakerDialog = new builder_cognitiveservices.QnAMakerDialog({
 });
 
 // Create your bot
-var bot = new builder.UniversalBot(connector,
-    [
-        function(session)
-        {
-			builder.Prompts.text(session, "What is your name?");
-        },
-		function(session,results)
-		{
-			session.send(`Great to meet you, ${results.response}, I hope that I can answer your questions!`)
-			session.replaceDialog("Tutorial");
-		}
-    ]);
+var bot = new builder.UniversalBot(connector);
 
 // A hello message at the beginning that tells the user how to start interacting with the bot
 bot.on('conversationUpdate', function(message) 
@@ -76,12 +65,4 @@ bot.on('conversationUpdate', function(message)
 
 bot.set('storage', tableStorage);
 
-bot.dialog("QnADialog",basicQnAMakerDialog);
-
-bot.dialog("Tutorial", [
-	function(session)
-	{
-		session.send("These are currently what I can answer about DT for you: \n\nLocation\n\nHours\n\nHelp/Support\n\nRecords Request");
-		session.replaceDialog("QnADialog");
-	}
-]);
+bot.dialog("/",basicQnAMakerDialog);
