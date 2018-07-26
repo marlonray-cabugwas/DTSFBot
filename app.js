@@ -4,6 +4,10 @@ var botbuilder_azure = require("botbuilder-azure");
 var builder_cognitiveservices = require("botbuilder-cognitiveservices");
 var card = require("./cards");
 
+console.log(card.welcome);
+console.log("\n");
+console.log("\n");
+
 // Setup Restify Server
 var server = restify.createServer();
 server.listen(process.env.port || process.env.PORT || 3978, function () {

@@ -95,5 +95,8 @@ var welcome ={
     }
   ]
 };
-exports.test = test;
-exports.welcome = welcome;
+
+testParsed = JSON.stringify(test);
+welcomeParsed = JSON.stringify(welcome);
+exports.test = testParsed;
+exports.welcome = welcomeParsed;
