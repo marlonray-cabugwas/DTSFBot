@@ -82,7 +82,7 @@ var welcome = {
 	            },
 	            {
 	               "type":"TextBlock",
-	               "text":"To begin just ask your question!\n\nHere is what I can currently answer about DT:\n\nLocation\n\nTime\n\nHelp/Support Contact\n\nRecords Request",
+	               "text":"To begin just ask your question!\n\nHere is what I can currently answer about DT:\n\n*Location\n\n*Time\n\n*Help/Support Contact\n\n*Records Request",
 	               "wrap":true
 	            },
 	            {
