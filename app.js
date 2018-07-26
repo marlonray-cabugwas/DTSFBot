@@ -48,15 +48,7 @@ var bot = new builder.UniversalBot(connector,
     [
         function(session)
         {
-            if (session.message == "Hello")
-			{
-				builder.Prompts.text(session, "What is your name?");
-			}
-			else
-			{
-				session.send("Please enter \"Hello\"...");
-				session.replaceDialog("/");
-			}
+			builder.Prompts.text(session, "What is your name?");
         },
 		function(session,results)
 		{
