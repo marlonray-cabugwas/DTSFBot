@@ -4,10 +4,6 @@ var botbuilder_azure = require("botbuilder-azure");
 var builder_cognitiveservices = require("botbuilder-cognitiveservices");
 var card = require("./cards");
 
-console.log(card.welcome);
-console.log("\n");
-console.log("\n");
-
 // Setup Restify Server
 var server = restify.createServer();
 server.listen(process.env.port || process.env.PORT || 3978, function () {
@@ -34,13 +30,25 @@ var tableName = 'botdata';
 var azureTableClient = new botbuilder_azure.AzureTableClient(tableName, process.env['AzureWebJobsStorage']);
 var tableStorage = new botbuilder_azure.AzureBotStorage({ gzipData: false }, azureTableClient);
 
+// Recognizer and and Dialog for GA QnAMaker service
+var recognizer = new builder_cognitiveservices.QnAMakerRecognizer({
+    knowledgeBaseId: process.env.QnAKnowledgebaseId,
+    authKey: process.env.QnAAuthKey,
+    endpointHostName: process.env.QnAEndpointHostName
+});
+
+var basicQnAMakerDialog = new builder_cognitiveservices.QnAMakerDialog({
+    recognizers: [recognizer],
+    defaultMessage: 'No match! Try asking differently',
+    qnaThreshold: 0.3
+});
+
 // Create your bot
 var bot = new builder.UniversalBot(connector,
     [
         function(session)
         {
-			session.send(session.message);
-            if (session.message == "Hello"|| "hello")
+            if (session.message == "Hello")
 			{
 				builder.Prompts.text(session, "What is your name?");
 			}
@@ -52,7 +60,8 @@ var bot = new builder.UniversalBot(connector,
         },
 		function(session,results)
 		{
-			session.endDialog(`Hello ${results.response}! Please go ahead and ask a question`);
+			session.send(`Great to meet you, ${results.response}, I hope that I can answer your questions!`)
+			session.replaceDialog("Tutorial");
 		}
     ]);
 
@@ -72,19 +81,15 @@ bot.on('conversationUpdate', function(message)
             });
         }
     });
-   
+
 bot.set('storage', tableStorage);
 
-// Recognizer and and Dialog for GA QnAMaker service
-var recognizer = new builder_cognitiveservices.QnAMakerRecognizer({
-    knowledgeBaseId: process.env.QnAKnowledgebaseId,
-    authKey: process.env.QnAAuthKey,
-    endpointHostName: process.env.QnAEndpointHostName
-});
+bot.dialog("QnADialog",basicQnAMakerDialog);
 
-var basicQnAMakerDialog = new builder_cognitiveservices.QnAMakerDialog({
-    recognizers: [recognizer],
-    defaultMessage: 'No match! Try asking differently',
-    qnaThreshold: 0.3
-}
-);
+bot.dialog("Tutorial", [
+	function(session)
+	{
+		session.send("These are currently what I can answer about DT for you: \n\nLocation\n\nHours\n\nHelp/Support\n\nRecords Request");
+		session.replaceDialog("QnADialog");
+	}
+]);
