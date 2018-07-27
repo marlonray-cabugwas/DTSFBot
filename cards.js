@@ -102,5 +102,31 @@ var welcome = {
 	      }
 	   ]}};
 
+var noAns = {
+            contentType: "application/vnd.microsoft.card.adaptive",
+            content: {
+                type: "AdaptiveCard",
+                body: [
+                    {
+                        "type": "TextBlock",
+                        "text": `${session.conversationData.userQuestion}`,
+                        "size": "large",
+                        "weight": "bolder",
+                        "color": "accent",
+                        "wrap": true
+                    },
+                    {
+                        "type": "TextBlock",
+                        "text": `Sorry, no answer found in QnA service`,
+                        "size": "large",
+                        "weight": "regular",
+                        "color": "dark",
+                        "wrap": true
+                    }
+                ]
+            }
+        };
+
+exports.noAns = noAns;
 exports.test = test;
 exports.welcome = welcome;

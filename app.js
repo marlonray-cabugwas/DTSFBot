@@ -106,30 +106,7 @@ basicQnAMakerDialog.defaultWaitNextMessage = function(session, qnaMakerResult){
     
     if(!qnaMakerResult.answers){
         let msg = new builder.Message(session)
-        .addAttachment({
-            contentType: "application/vnd.microsoft.card.adaptive",
-            content: {
-                type: "AdaptiveCard",
-                body: [
-                    {
-                        "type": "TextBlock",
-                        "text": `${session.conversationData.userQuestion}`,
-                        "size": "large",
-                        "weight": "bolder",
-                        "color": "accent",
-                        "wrap": true
-                    },
-                    {
-                        "type": "TextBlock",
-                        "text": `Sorry, no answer found in QnA service`,
-                        "size": "large",
-                        "weight": "regular",
-                        "color": "dark",
-                        "wrap": true
-                    }
-                ]
-            }
-        });
+        .addAttachment(noAns);
         session.send(msg);
     }
     session.endDialog();
