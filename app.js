@@ -39,7 +39,6 @@ var recognizer = new builder_cognitiveservices.QnAMakerRecognizer({
 
 var basicQnAMakerDialog = new builder_cognitiveservices.QnAMakerDialog({
     recognizers: [recognizer],
-    defaultMessage: 'No match! Try asking differently',
     qnaThreshold: 0.3
 });
 
