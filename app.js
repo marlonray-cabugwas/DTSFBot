@@ -65,8 +65,6 @@ bot.on('conversationUpdate', function(message)
 
 bot.set('storage', tableStorage);
 
-bot.dialog("/",basicQnAMakerDialog);
-
 // override
 basicQnAMakerDialog.respondFromQnAMakerResult = function(session, qnaMakerResult){
     // Save the question
@@ -138,4 +136,4 @@ basicQnAMakerDialog.defaultWaitNextMessage = function(session, qnaMakerResult){
     session.endDialog();
 }
 
-bot.dialog('/', basicQnAMakerDialog);
+bot.dialog("/",basicQnAMakerDialog);
