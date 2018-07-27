@@ -62,7 +62,7 @@ var noAns =
 				[
                     {
                         "type": "TextBlock",
-                        "text": `${session.conversationData.userQuestion}`,
+                        "text": "`${session.conversationData.userQuestion}`",
                         "size": "large",
                         "weight": "bolder",
                         "color": "accent",
